@@ -2,8 +2,7 @@
 
 <input type="button" (click)="randomize()" value="New Rooms" />
 
-<h3>Room 1</h3>
-<p>Room {{rm1.name}} has {{rm1.getDoorCount()}} doors.</p>
 <h3>Room 2</h3>
 <p>Room {{rm2.name}} has {{rm2.getDoorCount()}} doors.</p>
 
+<app-room-view [room]="rm1"></app-room-view>

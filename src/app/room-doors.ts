@@ -1,28 +1,30 @@
 export class RoomDoors {
-    North: boolean = false;
-    South: boolean = false;
-    East: boolean = false;
-    West: boolean = false;
+    north: boolean = false;
+    south: boolean = false;
+    east: boolean = false;
+    west: boolean = false;
+    entryDoor: string;
 
     constructor(entryDoor?: string) {
-        this.North = this.getRandomBoolean();
-        this.South = this.getRandomBoolean();
-        this.East = this.getRandomBoolean();
-        this.West = this.getRandomBoolean();
+        this.north = this.getRandomBoolean();
+        this.south = this.getRandomBoolean();
+        this.east = this.getRandomBoolean();
+        this.west = this.getRandomBoolean();
 
         if (entryDoor) {
+            this.entryDoor = entryDoor.toUpperCase();
             switch (entryDoor.toUpperCase()) {
                 case 'NORTH':
-                    this.North = true;
+                    this.north = true;
                     break;
                 case 'SOUTH':
-                    this.South = true;
+                    this.south = true;
                     break;
                 case 'EAST':
-                    this.East = true;
+                    this.east = true;
                     break;
                 case 'WEST':
-                    this.West = true;
+                    this.west = true;
                     break;
                 default:
                     break;
@@ -32,10 +34,10 @@ export class RoomDoors {
 
     getCount(): number {
         let count: number = 0;
-        if (this.North) { count++; }
-        if (this.South) { count++; }
-        if (this.East) { count++; }
-        if (this.West) { count++; }
+        if (this.north) { count++; }
+        if (this.south) { count++; }
+        if (this.east) { count++; }
+        if (this.west) { count++; }
         return count;
     }
 
