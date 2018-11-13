@@ -21,9 +21,17 @@ export class AppComponent {
   
   randomize(): void {
     this.rm1 = new Room(<string> <any> this.idCounter++, 'SOUTH');
+    this.addRoom(this.rm1);
+  }
+
+  enterRoom(direction: string): void {
+    this.rm1 = new Room(<string> <any> this.idCounter++, direction);
+    this.addRoom(this.rm1);
+  }
+  
+  private addRoom(rm: Room): void {
     if (this.historyList) {
       this.historyList.addRoom(this.rm1);
     }
   }
-
 }

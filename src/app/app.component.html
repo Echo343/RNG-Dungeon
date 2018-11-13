@@ -2,5 +2,5 @@
 
 <input type="button" (click)="randomize()" value="New Rooms" />
 
-<app-room-view [room]="rm1"></app-room-view>
+<app-room-view [room]="rm1" (goThroughDoor)="enterRoom($event)" ></app-room-view>
 <app-history></app-history>

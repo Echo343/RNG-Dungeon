@@ -1,12 +1,28 @@
 <h3>Room View</h3>
-<p>Name: {{room.name}}</p>
+<div>Name: {{room.name}}</div>
 
 <h4>Doors</h4>
-<p>Count: {{room.doors.getCount()}}</p>
-<p>EntryDoor: {{room.doors.entryDoor}}</p>
+<div>Count: {{room.doors.getCount()}}</div>
+<div>EntryDoor: {{room.doors.entryDoor}}</div>
 <ul>
-  <li>North: {{room.doors.north}}</li>
-  <li>South: {{room.doors.south}}</li>
-  <li>East: {{room.doors.east}}</li>
-  <li>West: {{room.doors.west}}</li>
+  <li>
+    <span>North: </span>
+    <input type="button" *ngIf="room.doors.north" (click)="doorClick('south')" value="enter" />
+    <span *ngIf="!room.doors.north" >---</span>
+  </li>
+  <li>
+    <span>South: </span>
+    <input type="button" *ngIf="room.doors.south" (click)="doorClick('north')" value="enter" />
+    <span *ngIf="!room.doors.south" >---</span>
+  </li>
+  <li>
+    <span>East: </span>
+    <input type="button" *ngIf="room.doors.east" (click)="doorClick('west')" value="enter" />
+    <span *ngIf="!room.doors.east" >---</span>
+  </li>
+  <li>
+    <span>West: </span>
+    <input type="button" *ngIf="room.doors.west" (click)="doorClick('east')" value="enter" />
+    <span *ngIf="!room.doors.west" >---</span>
+  </li>
 </ul>

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Room } from '../room';
 
 @Component({
@@ -8,11 +8,16 @@ import { Room } from '../room';
 })
 export class RoomViewComponent implements OnInit {
 
+  @Output() goThroughDoor: EventEmitter<string> = new EventEmitter();
   @Input() room: Room;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  private doorClick(direction: string): void {
+    this.goThroughDoor.emit(direction);
   }
 
 }
