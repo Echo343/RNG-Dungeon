@@ -1,37 +1,36 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { Room } from './room';
 import { HistoryComponent } from './history/history.component';
+import { Coordinate } from './coordinate';
+import { Direction } from './direction.enum';
 
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  rm1: Room;
-  private idCounter: number = 0;
+export class AppComponent implements AfterViewInit {
+    currentRoom: Room;
+    private idCounter: number = 0;
 
-  @ViewChild(HistoryComponent)
-  private historyList: HistoryComponent;
-  
-  constructor() {
-    this.randomize();
-  }
-  
-  randomize(): void {
-    this.rm1 = new Room(<string> <any> this.idCounter++, 'SOUTH');
-    this.addRoom(this.rm1);
-  }
+    @ViewChild(HistoryComponent)
+    private historyList: HistoryComponent;
 
-  enterRoom(direction: string): void {
-    this.rm1 = new Room(<string> <any> this.idCounter++, direction);
-    this.addRoom(this.rm1);
-  }
-  
-  private addRoom(rm: Room): void {
-    if (this.historyList) {
-      this.historyList.addRoom(this.rm1);
+    constructor() {
+        this.currentRoom = new Room(<string><any>this.idCounter++, new Coordinate(), [Direction.NORTH, Direction.EAST, Direction.WEST]);
     }
-  }
+
+    ngAfterViewInit() {
+        this.addRoom(this.currentRoom);
+    }
+
+    enterRoom(direction: Direction): void {
+        this.currentRoom = new Room(<string><any>this.idCounter++, this.currentRoom.coordinates.getDirection(direction), [direction]);
+        this.addRoom(this.currentRoom);
+    }
+
+    private addRoom(rm: Room): void {
+        this.historyList.addRoom(this.currentRoom);
+    }
 }

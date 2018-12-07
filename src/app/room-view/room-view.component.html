@@ -7,22 +7,22 @@
 <ul>
   <li>
     <span>North: </span>
-    <input type="button" *ngIf="room.doors.north" (click)="doorClick('south')" value="enter" />
+    <input type="button" *ngIf="room.doors.north" (click)="doorClick(direction.SOUTH)" value="enter" />
     <span *ngIf="!room.doors.north" >---</span>
   </li>
   <li>
     <span>South: </span>
-    <input type="button" *ngIf="room.doors.south" (click)="doorClick('north')" value="enter" />
+    <input type="button" *ngIf="room.doors.south" (click)="doorClick(direction.NORTH)" value="enter" />
     <span *ngIf="!room.doors.south" >---</span>
   </li>
   <li>
     <span>East: </span>
-    <input type="button" *ngIf="room.doors.east" (click)="doorClick('west')" value="enter" />
+    <input type="button" *ngIf="room.doors.east" (click)="doorClick(direction.WEST)" value="enter" />
     <span *ngIf="!room.doors.east" >---</span>
   </li>
   <li>
     <span>West: </span>
-    <input type="button" *ngIf="room.doors.west" (click)="doorClick('east')" value="enter" />
+    <input type="button" *ngIf="room.doors.west" (click)="doorClick(direction.EAST)" value="enter" />
     <span *ngIf="!room.doors.west" >---</span>
   </li>
 </ul>

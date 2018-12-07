@@ -1,34 +1,36 @@
+import { Direction } from "./direction.enum";
+
 export class RoomDoors {
     north: boolean = false;
     south: boolean = false;
     east: boolean = false;
     west: boolean = false;
-    entryDoor: string;
 
-    constructor(entryDoor?: string) {
+    constructor(forceDoors?: Direction[]) {
         this.north = this.getRandomBoolean();
         this.south = this.getRandomBoolean();
         this.east = this.getRandomBoolean();
         this.west = this.getRandomBoolean();
 
-        if (entryDoor) {
-            this.entryDoor = entryDoor.toUpperCase();
-            switch (entryDoor.toUpperCase()) {
-                case 'NORTH':
-                    this.north = true;
-                    break;
-                case 'SOUTH':
-                    this.south = true;
-                    break;
-                case 'EAST':
-                    this.east = true;
-                    break;
-                case 'WEST':
-                    this.west = true;
-                    break;
-                default:
-                    break;
-            }
+        if (forceDoors) {
+            for (var i = 0; i < forceDoors.length; i++) {
+                switch (forceDoors[i]) {
+                    case Direction.NORTH:
+                        this.north = true;
+                        break;
+                    case Direction.SOUTH:
+                        this.south = true;
+                        break;
+                    case Direction.EAST:
+                        this.east = true;
+                        break;
+                    case Direction.WEST:
+                        this.west = true;
+                        break;
+                    default:
+                        break;
+                }
+            })
         }
     }
 
